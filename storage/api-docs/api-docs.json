@@ -1,0 +1,965 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "蓝博客户端api接口文档",
+        "description": "API接口返回描述：code=200正常，code=401登录信息错误，code=0其他错误。msg为返回描述，data为返回结构体",
+        "contact": {
+            "email": "834574377@qq.com"
+        },
+        "version": "0.1"
+    },
+    "servers": [
+        {
+            "url": "http://192.168.60.42/ptweb/",
+            "description": "人人兼职本机测试"
+        },
+        {
+            "url": "https://juliangtec.com/app",
+            "description": "邮箱发送服务器"
+        },
+        {
+            "url": "https://api.lanbodsp.com",
+            "description": "DSP线上"
+        }
+    ],
+    "paths": {
+        "/upload": {
+            "post": {
+                "tags": [
+                    "其他模块"
+                ],
+                "summary": "图片上传",
+                "operationId": "7242e33c7475eb8b87acb8178994c6ff",
+                "parameters": [
+                    {
+                        "name": "token",
+                        "in": "header",
+                        "description": "token",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "file": {
+                                        "description": "上传图片",
+                                        "type": "file"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "{code: int, msg:string, data:[]}  "
+                    }
+                }
+            }
+        },
+        "/contentpload": {
+            "post": {
+                "tags": [
+                    "其他模块"
+                ],
+                "summary": "内容导入",
+                "operationId": "46bf7ed3baa1db574af6134babe6ec88",
+                "parameters": [
+                    {
+                        "name": "typeid",
+                        "in": "query",
+                        "description": "分类0今日推荐，1宅家做，2线上兼职，3翻译接单，4聊天赚钱，5本地兼职",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "file": {
+                                        "description": "上传excel",
+                                        "type": "file"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "{code: int, msg:string, data:[]}  "
+                    }
+                }
+            }
+        },
+        "/emailmessage": {
+            "get": {
+                "tags": [
+                    "其他模块"
+                ],
+                "summary": "邮件模板",
+                "operationId": "388c35b909c4e35d61f59e60378fd318",
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "description": "邮箱",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "message",
+                        "in": "query",
+                        "description": "邮件信息",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "发送人",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "title",
+                        "in": "query",
+                        "description": "标题",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{code: int, msg:string, data:[]}"
+                    }
+                }
+            }
+        },
+        "/tologin": {
+            "post": {
+                "tags": [
+                    "用户模块"
+                ],
+                "summary": "用户登录",
+                "operationId": "f80e3fc43d70180ab6efd36f3e827223",
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "description": "邮箱",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "password",
+                        "in": "query",
+                        "description": "密码",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{code: int, msg:string, data:[]}"
+                    }
+                }
+            }
+        },
+        "/toreg": {
+            "post": {
+                "tags": [
+                    "用户模块"
+                ],
+                "summary": "用户注册",
+                "operationId": "066ee576958a1b0bb0118c8679867bb6",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "姓名",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "sex",
+                        "in": "query",
+                        "description": "性别0未知，1男，2女",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "description": "邮箱",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "password",
+                        "in": "query",
+                        "description": "密码",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "code",
+                        "in": "query",
+                        "description": "验证码",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{code: int, msg:string, data:[]}"
+                    }
+                }
+            }
+        },
+        "/email": {
+            "post": {
+                "tags": [
+                    "用户模块"
+                ],
+                "summary": "邮箱/手机号是否已注册",
+                "operationId": "688274a87bff441775716091bc174100",
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "description": "邮箱",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{code: int, msg:string, data:[]}"
+                    }
+                }
+            }
+        },
+        "/editphoto": {
+            "post": {
+                "tags": [
+                    "用户模块"
+                ],
+                "summary": "修改头像",
+                "operationId": "f226045c330f555a00cb86b06603b31c",
+                "parameters": [
+                    {
+                        "name": "token",
+                        "in": "header",
+                        "description": "token",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "photourl",
+                        "in": "query",
+                        "description": "链接地址",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{code: int, msg:string, data:[]}"
+                    }
+                }
+            }
+        },
+        "/emailverify": {
+            "post": {
+                "tags": [
+                    "用户模块"
+                ],
+                "summary": "邮箱/手机号验证码",
+                "operationId": "1e730acc22be7005124c799e81a19579",
+                "parameters": [
+                    {
+                        "name": "phone",
+                        "in": "query",
+                        "description": "手机号",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "type",
+                        "in": "query",
+                        "description": "类型0注册，1修改密码",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{code: int, msg:string, data:[]}"
+                    }
+                }
+            }
+        },
+        "/phoneverify": {
+            "post": {
+                "tags": [
+                    "用户模块"
+                ],
+                "summary": "国内手机验证码",
+                "operationId": "2378f07d445c15d458729413402e6b91",
+                "parameters": [
+                    {
+                        "name": "phone",
+                        "in": "query",
+                        "description": "手机号",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "type",
+                        "in": "query",
+                        "description": "类型0注册，1修改密码",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{code: int, msg:string, data:[]}"
+                    }
+                }
+            }
+        },
+        "/editpassword": {
+            "post": {
+                "tags": [
+                    "用户模块"
+                ],
+                "summary": "修改密码",
+                "operationId": "411c8e57ce9ebd5c942c7b39f6474c75",
+                "parameters": [
+                    {
+                        "name": "token",
+                        "in": "header",
+                        "description": "token",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "password",
+                        "in": "query",
+                        "description": "密码",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "code",
+                        "in": "query",
+                        "description": "验证码",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{code: int, msg:string, data:[]}"
+                    }
+                }
+            }
+        },
+        "/editname": {
+            "post": {
+                "tags": [
+                    "用户模块"
+                ],
+                "summary": "修改名称",
+                "operationId": "75d4f0ed5932abe1d9f7f61eef107365",
+                "parameters": [
+                    {
+                        "name": "token",
+                        "in": "header",
+                        "description": "token",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "名称",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{code: int, msg:string, data:[]}"
+                    }
+                }
+            }
+        },
+        "/userinfo": {
+            "get": {
+                "tags": [
+                    "用户模块"
+                ],
+                "summary": "用户信息",
+                "operationId": "850b1aa6f0d56c5c322a197fd1a0201a",
+                "parameters": [
+                    {
+                        "name": "token",
+                        "in": "header",
+                        "description": "token",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{code: int, msg:string, data:[]}"
+                    }
+                }
+            }
+        },
+        "/edituserinfo": {
+            "post": {
+                "tags": [
+                    "用户模块"
+                ],
+                "summary": "修改用户信息",
+                "operationId": "0dc73abfcd76df6cbdfacdf44ec8a033",
+                "parameters": [
+                    {
+                        "name": "photo",
+                        "in": "query",
+                        "description": "头像",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "姓名",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "sex",
+                        "in": "query",
+                        "description": "性别0未知，1男，2女",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "profession",
+                        "in": "query",
+                        "description": "职业",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "phone",
+                        "in": "query",
+                        "description": "手机号",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{code: int, msg:string, data:[]}"
+                    }
+                }
+            }
+        },
+        "/userbill": {
+            "get": {
+                "tags": [
+                    "用户模块"
+                ],
+                "summary": "用户账单",
+                "operationId": "3c3b69784ec6dfae998e1ca45fbd9488",
+                "parameters": [
+                    {
+                        "name": "token",
+                        "in": "header",
+                        "description": "token",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "transaction",
+                        "in": "query",
+                        "description": "交易类型 0：财务后台充值， 1：财务后台提现。 2：广告消费 ",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "start_time",
+                        "in": "query",
+                        "description": "开始时间",
+                        "required": false,
+                        "schema": {
+                            "type": "date"
+                        }
+                    },
+                    {
+                        "name": "end_time",
+                        "in": "query",
+                        "description": "结束时间",
+                        "required": false,
+                        "schema": {
+                            "type": "date"
+                        }
+                    },
+                    {
+                        "name": "perpage",
+                        "in": "query",
+                        "description": "每页数",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "页码",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{code: int, msg:string, data:[]}"
+                    }
+                }
+            }
+        },
+        "/getmoney": {
+            "get": {
+                "tags": [
+                    "用户模块"
+                ],
+                "summary": "用户余额",
+                "operationId": "0795717df6e1cfe7ab76d34e8a327b62",
+                "parameters": [
+                    {
+                        "name": "token",
+                        "in": "header",
+                        "description": "token",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{code: int, msg:string, data:[]}"
+                    }
+                }
+            }
+        },
+        "/orderlist": {
+            "post": {
+                "tags": [
+                    "订单模块"
+                ],
+                "summary": "订单列表",
+                "operationId": "7fc0b48b24bbc19b8eb0b841555b25fe",
+                "parameters": [
+                    {
+                        "name": "token",
+                        "in": "header",
+                        "description": "token",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "status",
+                        "in": "query",
+                        "description": "状态",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "start_time",
+                        "in": "query",
+                        "description": "开始时间",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "end_time",
+                        "in": "query",
+                        "description": "结束时间",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "页码",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{code: int, msg:string, data:[]}"
+                    }
+                }
+            }
+        },
+        "/getorder": {
+            "post": {
+                "tags": [
+                    "订单模块"
+                ],
+                "summary": "订单详情",
+                "operationId": "d16060571ed9bf891207cc03598869ff",
+                "parameters": [
+                    {
+                        "name": "token",
+                        "in": "header",
+                        "description": "token",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "编号",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{code: int, msg:string, data:[]}"
+                    }
+                }
+            }
+        },
+        "/create_order": {
+            "post": {
+                "tags": [
+                    "订单模块"
+                ],
+                "summary": "报名",
+                "operationId": "1d72dcd8aea4b395cfac2ae5bcb5cf28",
+                "parameters": [
+                    {
+                        "name": "token",
+                        "in": "header",
+                        "description": "token",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "编号",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{code: int, msg:string, data:[]}"
+                    }
+                }
+            }
+        },
+        "/collect": {
+            "post": {
+                "tags": [
+                    "订单模块"
+                ],
+                "summary": "收藏",
+                "operationId": "18cc57f98aef1e5652b7003ee0b0f71f",
+                "parameters": [
+                    {
+                        "name": "token",
+                        "in": "header",
+                        "description": "token",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "编号",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{code: int, msg:string, data:[]}"
+                    }
+                }
+            }
+        },
+        "/collectlist": {
+            "post": {
+                "tags": [
+                    "订单模块"
+                ],
+                "summary": "收藏列表",
+                "operationId": "96d9cbe7fa9c2e42a23f06a560e4f30e",
+                "parameters": [
+                    {
+                        "name": "token",
+                        "in": "header",
+                        "description": "token",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "start_time",
+                        "in": "query",
+                        "description": "开始时间",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "end_time",
+                        "in": "query",
+                        "description": "结束时间",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "页码",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{code: int, msg:string, data:[]}"
+                    }
+                }
+            }
+        },
+        "/typelist": {
+            "post": {
+                "tags": [
+                    "兼职模块"
+                ],
+                "summary": "兼职分类",
+                "operationId": "d792058f7e22b0257c74e2ca8739c288",
+                "parameters": [
+                    {
+                        "name": "token",
+                        "in": "header",
+                        "description": "token",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{code: int, msg:string, data:[]}"
+                    }
+                }
+            }
+        },
+        "/worklist": {
+            "post": {
+                "tags": [
+                    "兼职模块"
+                ],
+                "summary": "兼职列表",
+                "operationId": "6f261e86c765c37fbddec899e6b38ae9",
+                "parameters": [
+                    {
+                        "name": "token",
+                        "in": "header",
+                        "description": "token",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "typeid",
+                        "in": "query",
+                        "description": "分类",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "address",
+                        "in": "query",
+                        "description": "地址",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "页码",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{code: int, msg:string, data:[]}"
+                    }
+                }
+            }
+        },
+        "/getwork": {
+            "post": {
+                "tags": [
+                    "兼职模块"
+                ],
+                "summary": "任务详情",
+                "operationId": "a5f948716900dfa60d4515bf74973378",
+                "parameters": [
+                    {
+                        "name": "token",
+                        "in": "header",
+                        "description": "token",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "编号",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{code: int, msg:string, data:[]}"
+                    }
+                }
+            }
+        }
+    }
+}
